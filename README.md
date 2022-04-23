@@ -3,7 +3,7 @@
 ![image](https://user-images.githubusercontent.com/55049159/164279452-653a3fb1-e24c-460d-b658-1cdf413be95a.png)
 <br>
 
-03. 카프카 기본개념구조
+03. <a href="https://github.com/jaero0725/kafka_study/blob/main/03_%EC%B9%B4%ED%94%84%EC%B9%B4%EA%B0%9C%EB%85%90.md">카프카 기본개념구조</a>
 04. 카프카의 내부 동작원리와 구현
 05. 프로듀서의 내부 동작 원리와 구현
 06. 컨슈머의 내부 동작 원리와 구현
