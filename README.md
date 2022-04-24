@@ -1,8 +1,6 @@
 ## 📘 실전 카프카 개발부터 운영까지
 
-![image](https://user-images.githubusercontent.com/55049159/164279452-653a3fb1-e24c-460d-b658-1cdf413be95a.png){ width: 500px; height:600px }
-
-<img src="https://user-images.githubusercontent.com/55049159/164279452-653a3fb1-e24c-460d-b658-1cdf413be95a.png" style="width:400px;height:500px"/>
+<img src="https://user-images.githubusercontent.com/55049159/164279452-653a3fb1-e24c-460d-b658-1cdf413be95a.png" style="width:300px;height:400px"/>
 <br>
 
 - 날짜 : 매주 수요일 23:00
