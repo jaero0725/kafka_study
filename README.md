@@ -2,7 +2,7 @@
 <img src="https://user-images.githubusercontent.com/55049159/164279452-653a3fb1-e24c-460d-b658-1cdf413be95a.png" style="width:300px;height:400px"/>
 <br>
 - 스터디 날짜 : 매주 수요일 23:00
-<br>
+<br><br>
 
 |chapter|날짜|진행상황|
 |------|---|---|
