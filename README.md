@@ -3,6 +3,7 @@
 <br>
 - 스터디 날짜 : 매주 수요일 23:00
 <br>
+
 |chapter|날짜|진행상황|
 |------|---|---|
 |3장  <a href="https://github.com/jaero0725/kafka_study/blob/main/03_%EC%B9%B4%ED%94%84%EC%B9%B4%EA%B0%9C%EB%85%90.md">카프카 기본개념구조</a>|22-04-20|☑️|
