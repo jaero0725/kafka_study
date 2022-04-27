@@ -1,5 +1,7 @@
 ## 📘 실전 카프카 개발부터 운영까지
-<img src="https://user-images.githubusercontent.com/55049159/164279452-653a3fb1-e24c-460d-b658-1cdf413be95a.png" style="width:300px;height:400px"/>
+<a href="https://www.onlybook.co.kr/entry/kafka2">
+ <img src="https://user-images.githubusercontent.com/55049159/164279452-653a3fb1-e24c-460d-b658-1cdf413be95a.png" style="width:300px;height:400px"/>
+  </a>
 <br>
 - 스터디 날짜 : 매주 수요일 23:00<br>
 - 일정 : <a href="https://docs.google.com/spreadsheets/d/1-53xN3NHmn79L2voiBvvwwVoOK0vv62EieU8yRSECOE/edit#gid=0">일정확인</a><br>
