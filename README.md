@@ -4,8 +4,8 @@
   </a>
 <br>
 - <b>스터디 날짜 : 매주 수요일 23:00<b/><br>
-- 일정 : <a href="https://docs.google.com/spreadsheets/d/1-53xN3NHmn79L2voiBvvwwVoOK0vv62EieU8yRSECOE/edit#gid=0">일정확인</a><br>
-- 노션 : <a href="https://www.notion.so/Apache-Kafka-771e96dd06e846a88886f76ea962c6d2">노션확인</a>
+- 일정 : <a href="https://docs.google.com/spreadsheets/d/1-53xN3NHmn79L2voiBvvwwVoOK0vv62EieU8yRSECOE/edit#gid=0">일정링크</a><br>
+- 노션 : <a href="https://www.notion.so/Apache-Kafka-771e96dd06e846a88886f76ea962c6d2">노션링크</a>
 <br><br>
 
 |chapter|날짜|진행상황|
