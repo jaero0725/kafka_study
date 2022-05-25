@@ -1,0 +1,151 @@
+7장의 학습 목적 : 카프카 클러스터를 구축할 떄의 고려사항과 카프카 클러스터를 구축한 후 안정적인 운영을 위한 모니터링 방법
+
+## 7.1 안정적인 운영을 위한 주키퍼와 카프카 구성
+
+### 1. 주키퍼 구성
+
+- 카프카가 주키퍼로부터 독립을 하며 의존성을 제거하려고 하고 있지만 여전히 주키퍼와 카프카를 조합해 사용하는 경우가 많습니다.
+
+**1) 주키퍼 서버 수량**
+
+- 원칙 : 기본적으로 **쿼럼(과반수) 구성**을 기반으로 동작하여 **반드시 홀수로 구성**해야 합니다. **최소 3개**
+- 예시) 주키퍼 서버 5개가 있다면 과반수인 3을 충족할 수 있는 최대 2대까지의 주키퍼 장애를 허용
+
+**2) 주키퍼 하드웨어**
+
+- 높은 하드웨어 리소스가 필요하지 않으므로 주키퍼의 물리적 메모리 크기는 4~8GB로 구성
+- 디스크는 240G 또는 470G SSD - 쓰기 성능이 좋은 SSD / 힙 메모리 크기 1~2GB
+- **과도한 물리 메모리를 장착하는 것은 메모리를 낭비함**
+
+⇒ **주키퍼 배치**는 최근 AWS와 같은 클라우드 환경에 **EC2 인스턴스를 가능한 한 2개 또는 3개의 가용 영역에 분산**해 구성을 추천
+
+### 2. 카프카 구성
+
+**1) 카프카 서버 수량**
+
+- 주키퍼와 다른 점 : 주키퍼 처럼 **쿼럼 방식의 구성이 필요하지 않아 홀수일 필요가 없어** 4대, 6대 등으로도 구성이 가능, **최소 3대**
+- 카프카가 손쉽게 서버 확장을 할 수 있는 장점이 있어 꼭 **필요한 수량만큼만 구성**
+
+**2) 카프카 하드웨어**
+
+- 주키퍼와 다른 점 : **카프카의 CPU 사용률이 높음**
+- 프로듀서나 컨슈머의 처리량을 높이기 위해 배치와 압축 기능을 많이 적용하여 **많은 리소스가 요구됨**
+- 최고의 고성능 CPU만 할 필요 없이 **코어 수가 많은 CPU로 구성**
+- 메모리 32GB부터 256GB까지 다양하게 선택할 수 있고 **카프카에서 사용하는 JVM 힙 크기가 일반적으로 6GB** 정도로 이보다 큰 물리 메모리가 요구됨
+
+⇒ **카프카 배치**는 **주키퍼와 마찬가지로 여러 서버에 분산하여 멀티 가용 영역을 구성**하는 것을 권장
+
+## 7.2 모니터링 시스템 구성
+
+- 목적 : 카프카의 현재 상태를 정확하게 파악하여 미래에 일어날 문제를 사전에 조치하도록 함
+- 대표적인 모니터링 방법
+    - **애플리케이션 로그 분석**
+    - **JMX를 이용해 브로커들의 메트릭 정보를 확인**
+
+### 1. 애플리케이션으로서 카프카의 로그 관리와 분석
+
+- 카프카 애플리케이션에서 발생하는 **모든 로그를 로컬 디스크에 기록**
+- 기본적으로 **자바 기반의 로깅 유틸리티인 log4j**를 이용
+- 로그에서 많은 양의 데이터가 나올 수 있기 때문에 **로그 레벨에서 변경하기 전에 여유 디스크 공간이 충분한지 확인**해야함
+
+**1) 로그 레벨표**
+
+**2) 기본적인 로그 관리 방법**
+
+```bash
+# log4 파일 내용 확인
+cat /usr/local/kafka/config/log4j.properties
+
+# 아래의 두줄에서 설정을 변경
+log4j.logger.kafka = INFO
+log4j.logger.org.apache.kafka = INFO
+```
+
+**3) Spring Boot 로그 확인해보기**
+
+[GitHub - CEOJINSUNG/blockchain-chat](https://github.com/CEOJINSUNG/blockchain-chat)
+
+- 환경 : Spring Boot, Spring-Kafka, docker, [bitnami/kafka](https://github.com/bitnami/bitnami-docker-kafka)
+
+```bash
+# kafka 토픽에 대한 정보 확인하기
+kafka-topics.sh --describe --topic test --bootstrap-server localhost:9092
+
+# kafka consumer 토픽에 대한 정보 확인하기
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test
+
+# 실행한 kafka에 대한 전체 로그 확인하기
+docker logs {kafka 이름}
+
+# applicaion.yml
+logging:
+  level:
+    root: info
+    org:
+      apache:
+        kafka: info
+```
+
+**4) 로그 파일 종류와 역할**
+
+### 2. JMX를 이용한 카프카 메트릭 모니터링
+
+- JMX는 자바로 만든 애플리케이션의 모니터링을 위한 도구를 제공하는 자바 API로서, MBean(Managed Bean)이라는 객체로 표현되어짐
+- 준비 절차
+    - 브로커에 JMX 포트를 오픈
+    - JMX에서 제공하는 메트릭 정보를 관리자가 GUI 형태로 볼 수 있도록 구성
+
+⇒ 가장 많이 쓰이는 프로메테우스와 익스포터로 구성
+
+![Scenario.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6f8c3471-010d-4d8e-af7e-ee6979d9f762/Scenario.png)
+
+- Kafka-Exporter와 JMX Export는 카프카 클러스터로부터 브로커 metrics를 수집합니다.
+- 프로메테우스는 이러한 metrics를 수집해 시계열 데이터베이스에 저장합니다.
+- 그라파나는 프로메테우스와 연결되어 대시보드를 제공하게 됩니다.
+
+**1) Kafka-exporter 생성하기**
+
+```yaml
+version: '3.8'
+
+networks:
+  kafka-net:
+    driver: bridge
+
+services:
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    environment:
+      - 'ALLOW_ANONYMOUS_LOGIN=yes'
+    ports:
+      - '2181:2181'
+    networks:
+      - kafka-net
+  kafka:
+    image: 'bitnami/kafka:latest'
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+    ports:
+      - "9092:9092"
+    networks:
+      - kafka-net
+    depends_on:
+      - zookeeper
+  kafka-exporter:
+    image: "bitnami/kafka-exporter:latest"
+    ports:
+      - "9308:9308"
+    command:
+      - --kafka.server=kafka:9092
+    networks:
+      - kafka-net
+```
+
+**2) 프로메테우스 생성하기**
+scrape_configs:
+  - job_name: 'kafka-exporter'
+    static_configs:
+      - targets: ['host.docker.internal:9308']
