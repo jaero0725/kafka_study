@@ -15,9 +15,9 @@
 |5장 <a href="#">프로듀서의 내부 동작 원리와 구현</a>|22-05-04|☑️|
 |6장 <a href="#">컨슈머의 내부 동작 원리와 구현</a>|22-05-11|☑️|
 |7장 <a href="https://zeroco.tistory.com/113">카프카 운영과 모니터링</a>|22-05-18|☑️|
-|8장 <a href="https://zeroco.tistory.com/111">카프카 버전 업그레이드와 확장|22-05-25|☑️|
-|9장 <a href="https://zeroco.tistory.com/115">카프카 보안|22-06-08|☑️|
+|8장 <a href="https://zeroco.tistory.com/111">카프카 버전 업그레이드와 확장</a>||22-05-25|☑️|
+|9장 <a href="https://zeroco.tistory.com/115">카프카 보안</a>|22-06-08|☑️|
 |10장 스키마 레지스트리 |22-06-15||
-|11장 카프카 커넥트|22-06-22|🎙️|
+|11장 <a href="https://zeroco.tistory.com/116">카프카 커넥트</a>||22-06-22|🎙️|
 
 
