@@ -17,7 +17,7 @@
 |7장 <a href="https://zeroco.tistory.com/113">카프카 운영과 모니터링</a>|22-05-18|☑️|
 |8장 <a href="https://zeroco.tistory.com/111">카프카 버전 업그레이드와 확장</a>|22-05-25|☑️|
 |9장 <a href="https://zeroco.tistory.com/115">카프카 보안</a>|22-06-08|☑️|
-|10장 스키마 레지스트리 |22-06-15||
+|10장 <a href="https://zeroco.tistory.com/115">스키마 레지스트리 </a>|22-06-15|☑️|
 |11장 <a href="https://zeroco.tistory.com/116">카프카 커넥트</a>|22-06-22|🎙️|
 
 
